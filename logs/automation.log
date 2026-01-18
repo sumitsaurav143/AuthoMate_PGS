@@ -1,0 +1,51 @@
+2026-01-03T00:00:36.974 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-03T00:00:36.976 : Initializing Servlet 'dispatcherServlet'
+2026-01-03T00:00:36.977 : Completed initialization in 1 ms
+2026-01-03T00:00:46.817 : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-03T00:00:46.828 : Graceful shutdown complete
+2026-01-03T00:00:52.256 : Starting AutomationToolApplication v0.0.1-SNAPSHOT using Java 23.0.2 with PID 13858 (/Users/sumit/Downloads/seleniumapp/target/AuthoMate-0.0.1-SNAPSHOT.jar started by sumit in /Users/sumit/Downloads/seleniumapp)
+2026-01-03T00:00:52.257 : No active profile set, falling back to 1 default profile: "default"
+2026-01-03T00:00:52.557 : Tomcat initialized with port 8080 (http)
+2026-01-03T00:00:52.563 : Starting service [Tomcat]
+2026-01-03T00:00:52.563 : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-03T00:00:52.573 : Root WebApplicationContext: initialization completed in 294 ms
+2026-01-03T00:00:52.648 : Adding welcome page: class path resource [static/index.html]
+2026-01-03T00:00:52.737 : Tomcat started on port 8080 (http) with context path '/'
+2026-01-03T00:00:52.743 : Started AutomationToolApplication in 0.658 seconds (process running for 0.891)
+2026-01-03T00:00:56.620 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-03T00:00:56.620 : Initializing Servlet 'dispatcherServlet'
+2026-01-03T00:00:56.622 : Completed initialization in 1 ms
+2026-01-03T00:02:17.532 : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-03T00:02:17.544 : Graceful shutdown complete
+2026-01-03T00:02:26.935 : Starting AutomationToolApplicationTests using Java 23.0.2 with PID 14131 (started by sumit in /Users/sumit/Downloads/seleniumapp)
+2026-01-03T00:02:26.935 : No active profile set, falling back to 1 default profile: "default"
+2026-01-03T00:02:27.180 : Adding welcome page: class path resource [static/index.html]
+2026-01-03T00:02:27.280 : Started AutomationToolApplicationTests in 0.451 seconds (process running for 0.848)
+2026-01-03T00:02:36.489 : Starting AutomationToolApplication v0.0.1-SNAPSHOT using Java 23.0.2 with PID 14141 (/Users/sumit/Downloads/seleniumapp/target/AuthoMate-0.0.1-SNAPSHOT.jar started by sumit in /Users/sumit/Downloads/seleniumapp)
+2026-01-03T00:02:36.490 : No active profile set, falling back to 1 default profile: "default"
+2026-01-03T00:02:36.805 : Tomcat initialized with port 8080 (http)
+2026-01-03T00:02:36.810 : Starting service [Tomcat]
+2026-01-03T00:02:36.810 : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-03T00:02:36.822 : Root WebApplicationContext: initialization completed in 308 ms
+2026-01-03T00:02:36.899 : Adding welcome page: class path resource [static/index.html]
+2026-01-03T00:02:36.992 : Tomcat started on port 8080 (http) with context path '/'
+2026-01-03T00:02:36.999 : Started AutomationToolApplication in 0.687 seconds (process running for 0.924)
+2026-01-03T00:02:37.160 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-03T00:02:37.160 : Initializing Servlet 'dispatcherServlet'
+2026-01-03T00:02:37.161 : Completed initialization in 1 ms
+2026-01-03T00:02:47.186 : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-03T00:02:47.206 : Graceful shutdown complete
+2026-01-03T00:02:49.369 : Starting AutomationToolApplication v0.0.1-SNAPSHOT using Java 23.0.2 with PID 14147 (/Users/sumit/Downloads/seleniumapp/target/AuthoMate-0.0.1-SNAPSHOT.jar started by sumit in /Users/sumit/Downloads/seleniumapp)
+2026-01-03T00:02:49.369 : No active profile set, falling back to 1 default profile: "default"
+2026-01-03T00:02:49.670 : Tomcat initialized with port 8080 (http)
+2026-01-03T00:02:49.676 : Starting service [Tomcat]
+2026-01-03T00:02:49.676 : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-03T00:02:49.686 : Root WebApplicationContext: initialization completed in 293 ms
+2026-01-03T00:02:49.761 : Adding welcome page: class path resource [static/index.html]
+2026-01-03T00:02:49.854 : Tomcat started on port 8080 (http) with context path '/'
+2026-01-03T00:02:49.860 : Started AutomationToolApplication in 0.659 seconds (process running for 0.908)
+2026-01-03T00:02:50.023 : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-03T00:02:50.023 : Initializing Servlet 'dispatcherServlet'
+2026-01-03T00:02:50.023 : Completed initialization in 0 ms
+2026-01-03T00:03:59.767 : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-03T00:03:59.783 : Graceful shutdown complete
