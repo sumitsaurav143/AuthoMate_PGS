@@ -275,37 +275,37 @@ public class SeleniumAutomationService {
 
         if (totalExcelRows == allFarmers.size()) {
             log.info("Proceeding farmers details from Excel");
-//            for (int row = 1; row <= totalExcelRows; row++) {
-//
-//                log.info(" Automation Status :: " + isAutomationEnabled);
-//
-//                if(!isAutomationEnabled){
-//                    allSuccess=false;
-//                    break;
-//                }
-//
-//
-//                log.info("===== Processing Farmer Row {} =====", row);
-//
-//
-//                try {
-//                    Map<String, String> farmer = excelUtil.getRowData(filePath, row);
-//                    addFarmerDetails(farmer, usedFarmers, driver, wait, longWait);
-//
-//                    log.info("✅ Farmer row {} insert done", row);
-//                    try {
-//                        Thread.sleep(1500);
-//                    } catch (InterruptedException e) {
-//                        Thread.currentThread().interrupt();
-//                    }
-//                } catch (Exception e) {
-//
-//                    log.error("❌ Farmer row {} failed: {}", row, e.getMessage(), e);
-//                    automationStatusStream.notifyStatus("FAILED");
-//                    allSuccess=false;
-//                    break;
-//                }
-//            }
+            for (int row = 1; row <= totalExcelRows; row++) {
+
+                log.info(" Automation Status :: " + isAutomationEnabled);
+
+                if(!isAutomationEnabled){
+                    allSuccess=false;
+                    break;
+                }
+
+
+                log.info("===== Processing Farmer Row {} =====", row);
+
+
+                try {
+                    Map<String, String> farmer = excelUtil.getRowData(filePath, row);
+                    addFarmerDetails(farmer, usedFarmers, driver, wait, longWait);
+
+                    log.info("✅ Farmer row {} insert done", row);
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                } catch (Exception e) {
+
+                    log.error("❌ Farmer row {} failed: {}", row, e.getMessage(), e);
+                    automationStatusStream.notifyStatus("FAILED");
+                    allSuccess=false;
+                    break;
+                }
+            }
 
             if(allSuccess) {
                 log.info("All farmers added.. Saving data..");

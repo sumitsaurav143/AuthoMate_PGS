@@ -13,6 +13,109 @@
             font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
             background: #020617;
         }
+                /* ================= LOGIN PAGE ================= */
+        .login-wrapper {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #020024, #090979, #020617);
+            z-index: 9999;
+        }
+
+        .login-card {
+            width: 360px;
+            background: linear-gradient(180deg, #020617, #020024);
+            border: 1px solid rgba(148,163,184,0.15);
+            border-radius: 18px;
+            padding: 28px 26px 32px;
+            box-shadow: 0 30px 90px rgba(2,6,23,0.85);
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #22d3ee, #6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 900;
+            color: #020617;
+            box-shadow: 0 0 22px rgba(99,102,241,0.8);
+        }
+
+        .login-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #e0e7ff;
+            margin-bottom: 4px;
+        }
+
+        .login-subtitle {
+            font-size: 13px;
+            font-weight: 700;
+            color: #a5b4fc;
+            margin-bottom: 22px;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            font-size: 14px;
+            background: linear-gradient(180deg, #020617, #020024);
+            color: #e5e7eb;
+        }
+
+        .login-card input::placeholder {
+            color: #94a3b8;
+        }
+
+        .login-card input:focus {
+            outline: none;
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129,140,248,0.35);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #06b6d4, #22d3ee);
+            color: #022c22;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+        }
+
+        .login-error {
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fb7185;
+            display: none;
+        }
+
+        /* ================= MAIN APP (HIDDEN INITIALLY) ================= */
+        .app-wrapper {
+            display: none;
+            height: 100vh;
+        }
 
         .tab-bar {
             display: flex;
@@ -249,7 +352,7 @@
         .log-box {
             background: #020617;
             color: #22c55e;
-            height: 50vh;
+            height: 45vh;
             overflow-y: auto;
             padding: 12px;
             border-radius: 14px;
@@ -391,188 +494,273 @@
             box-shadow: inset 0 0 14px rgba(2,6,23,0.9);
         }
 
-        .logs {
-            flex: 1;           /* takes remaining space */
-            display: flex;
-            flex-direction: column;
-        }
 
         /* FOOTER */
         .footer-copy {
             color: #a5b4fc;
         }
+
+        /* TAB BAR — make it positionable */
+        .tab-bar {
+            display: flex;
+            align-items: center;
+            background: #020617;
+            border-bottom: 1px solid #334155;
+            position: relative; /* important for absolute logout button */
+        }
+
+        /* LOGOUT BUTTON */
+        .logout-btn {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            width: 100px;
+            transform: translateY(-50%);
+
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: none;
+
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+
+            background: linear-gradient(135deg, #ef4444, #fb7185);
+            color: #450a0a;
+
+            box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 1);
+        }
+
+       .step-locked {
+        pointer-events: none;
+        position: relative;
+        opacity: 0.75;
+    }
+
+    .step-locked::after {
+        content: "🔒 Excel validated, Proceed proceed..";
+        position: absolute;
+        inset: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 0.3px;
+
+        color: #e0e7ff;
+        background: linear-gradient(
+            135deg,
+            rgba(2,6,23,0.75),
+            rgba(15,23,42,0.75)
+        );
+
+        border: 1px solid rgba(148,163,184,0.25);
+        border-radius: 16px;
+
+        text-shadow: 0 0 10px rgba(99,102,241,0.9);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
     </style>
 </head>
 
 <body>
 
-<!-- =========================
-     TAB HEADER
-     ========================= -->
-<div class="tab-bar">
-    <div class="tab active" onclick="openTab('farmersTab', this)">Farmers Entry</div>
-    <div class="tab" onclick="openTab('peersTab', this)">Peers Appraisal</div>
-</div>
+<!-- ================= LOGIN PAGE ================= -->
+<div class="login-wrapper" id="loginWrapper">
+    <div class="login-card">
+        <div class="login-logo">⚙</div>
+        <div class="login-title">AuthoMate</div>
+        <div class="login-subtitle">v0.0.3</div>
 
-<!-- =========================
-     FARMERS ENTRY TAB
-     ========================= -->
-<div id="farmersTab" class="tab-content active">
-    <!-- ===== PAGE 1 BODY (UNCHANGED) ===== -->
-    <div class="container">
+        <input type="text" id="loginUser" placeholder="User ID" value="admin">
+        <input type="password" id="loginPass" placeholder="Password">
 
-        <!-- Header -->
-        <div class="header">
-            <h2>Farmers Entry</h2>
-            <div class="status" id="status">Idle</div>
-        </div>
-
-        <!-- Steps -->
-        <div class="stepsFarmer">
-
-            <!-- Step 1 -->
-            <div class="step">
-                <h4>Step 1: Upload Excel</h4>
-                <input type="file" id="excelFile" accept=".xls,.xlsx">
-                <button class="validate-btn" onclick="validateExcel()">Validate Excel</button>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="step">
-                <h4>Step 2: Credentials</h4>
-                <input type="text" id="userId" placeholder="User ID" value="Gnr1">
-                <input type="password" id="password" placeholder="Password" value="Vvkignr@1">
-            </div>
-
-            <!-- Step 3 -->
-            <div class="step">
-                <h4>Step 3: Automation</h4>
-                <button class="run-btn" id="runBtn" onclick="startAutomation()" disabled>
-                    ▶ Run Automation
-                </button>
-                <div class="stopbtns">
-                    <button class="stop-btn" id="stopBtn" onclick="stopAutomation()" disabled>
-                        ⛔ Stop Automation
-                    </button>
-                    <button class="shutoff" onclick="stopApp()"> ⏻ </button>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Logs -->
-        <div class="logs">
-            <h3>Automation Logs</h3>
-            <div class="log-box" id="logBox">Waiting for logs...</div>
-        </div>
-
-        <p class="footer-copy">©️ Sumit Sinha - AuthoMate <span class="version">v0.0.3</span></p>
-
+        <button class="login-btn" onclick="doLogin()">Login</button>
+        <div class="login-error" id="loginError">Invalid credentials</div>
+        <p class="footer-copy">©️ Sumit Sinha </p>
     </div>
 </div>
 
-<!-- =========================
-     PEERS APPRAISAL TAB
-     ========================= -->
-<div id="peersTab" class="tab-content">
-    <!-- ===== PAGE 2 BODY (UNCHANGED) ===== -->
-    <div class="container">
+<!-- ================= MAIN APP ================= -->
+<div class="app-wrapper" id="appWrapper">
+    <!-- =========================
+         TAB HEADER
+         ========================= -->
+    <div class="tab-bar">
+        <div class="tab active" onclick="openTab('farmersTab', this)">Farmers Entry</div>
+        <div class="tab" onclick="openTab('peersTab', this)">Peers Appraisal</div>
+        <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
 
-        <!-- Header -->
-        <div class="header">
-            <h2>Peers Appraisal</h2>
-            <div class="status" id="status2">Idle</div>
-        </div>
+    <!-- =========================
+         FARMERS ENTRY TAB
+         ========================= -->
+    <div id="farmersTab" class="tab-content active">
+        <!-- ===== PAGE 1 BODY (UNCHANGED) ===== -->
+        <div class="container">
 
-        <!-- Steps -->
-        <div class="steps">
-
-            <!-- Step 1 -->
-            <div class="step">
-                <h4>Step 1: Upload Excel</h4>
-                <input type="file" id="excelFile2" accept=".xls,.xlsx">
-                <button class="validate-btn" onclick="validateExcel2()">Validate Excel</button>
+            <!-- Header -->
+            <div class="header">
+                <h2>Farmers Entry</h2>
+                <div class="status" id="status">Idle</div>
             </div>
 
-            <!-- Step 2 -->
-            <div class="step">
-                <h4>Step 2: User Credentials</h4>
-                <input type="text" id="userId2" placeholder="User ID" value="CG00794">
-                <input type="password" id="password2" placeholder="Password" value="Bilaspur@1">
-            </div>
+            <!-- Steps -->
+            <div class="stepsFarmer">
 
-            <!-- Step 3 -->
-            <div class="step">
-                <h4>Step 3: Peers Appraisal Details</h4>
-
-                <!-- Row 1 -->
-                <div class="data-row three-cols">
-                    <select id="year">
-                        <option value="">Year</option>
-                        <option>2025</option>
-                        <option>2026</option>
-                        <option>2027</option>
-                        <option>2028</option>
-                        <option>2029</option>
-                        <option>2030</option>
-                    </select>
-
-                    <select id="season">
-                        <option value="">Season</option>
-                        <option>Summer</option>
-                        <option>Rabi</option>
-                        <option>Kharif</option>
-                    </select>
-
-                    <select id="month">
-                        <option value="">Month</option>
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
-                    </select>
+                <!-- Step 1 -->
+                <div class="step" id="excelStep">
+                    <h4>Step 1: Upload Excel</h4>
+                    <input type="file" id="excelFile" accept=".xls,.xlsx">
+                    <button class="validate-btn" onclick="validateExcel()">Validate Excel</button>
                 </div>
 
-                <!-- Row 2 -->
-                <div class="data-row two-cols">
-                    <input type="date" id="fromDate" placeholder="From Date">
-                    <input type="date" id="toDate" placeholder="To Date">
+                <!-- Step 2 -->
+                <div class="step">
+                    <h4>Step 2: Credentials</h4>
+                    <input type="text" id="userId" placeholder="User ID">
+                    <input type="password" id="password" placeholder="Password">
                 </div>
-            </div>
 
-
-            <!-- Step 4 -->
-            <div class="step">
-                <h4>Step 4: Automation</h4>
-                <button class="run-btn" id="runBtn2" onclick="startAutomation2()" disabled>
-                    ▶ Run Automation
-                </button>
-                <div class="stopbtns">
-                    <button class="stop-btn" id="stopBtn2" onclick="stopAutomation2()" disabled>
-                        ⛔ Stop Automation
+                <!-- Step 3 -->
+                <div class="step">
+                    <h4>Step 3: Automation</h4>
+                    <button class="run-btn" id="runBtn" onclick="startAutomation()" disabled>
+                        ▶ Run Automation
                     </button>
-                    <button class="shutoff" onclick="stopApp()"> ⏻ </button>
+                    <div class="stopbtns">
+                        <button class="stop-btn" id="stopBtn" onclick="stopAutomation()" disabled>
+                            ⛔ Stop Automation
+                        </button>
+                        <button class="shutoff" onclick="stopApp()"> ⏻ </button>
+                    </div>
                 </div>
+
             </div>
 
+            <!-- Logs -->
+            <div class="logs">
+                <h3>Automation Logs</h3>
+                <div class="log-box" id="logBox">Waiting for logs...</div>
+            </div>
+
+            <p class="footer-copy">©️ Sumit Sinha - AuthoMate <span class="version">v0.0.3</span></p>
+
         </div>
+    </div>
 
-        <!-- Logs -->
-        <div class="logs">
-            <h3>Automation Logs</h3>
-            <div class="log-box" id="logBox2">Waiting for logs...</div>
+    <!-- =========================
+         PEERS APPRAISAL TAB
+         ========================= -->
+    <div id="peersTab" class="tab-content">
+        <!-- ===== PAGE 2 BODY (UNCHANGED) ===== -->
+        <div class="container">
+
+            <!-- Header -->
+            <div class="header">
+                <h2>Peers Appraisal</h2>
+                <div class="status" id="status2">Idle</div>
+            </div>
+
+            <!-- Steps -->
+            <div class="steps">
+
+                <!-- Step 1 -->
+                <div class="step" id="excelStep2">
+                    <h4>Step 1: Upload Excel</h4>
+                    <input type="file" id="excelFile2" accept=".xls,.xlsx">
+                    <button class="validate-btn" onclick="validateExcel2()">Validate Excel</button>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step">
+                    <h4>Step 2: User Credentials</h4>
+                    <input type="text" id="userId2" placeholder="User ID" >
+                    <input type="password" id="password2" placeholder="Password">
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step">
+                    <h4>Step 3: Peers Appraisal Details</h4>
+
+                    <!-- Row 1 -->
+                    <div class="data-row three-cols">
+                        <select id="year">
+                            <option value="">Year</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                            <option>2029</option>
+                            <option>2030</option>
+                        </select>
+
+                        <select id="season">
+                            <option value="">Season</option>
+                            <option>Summer</option>
+                            <option>Rabi</option>
+                            <option>Kharif</option>
+                        </select>
+
+                        <select id="month">
+                            <option value="">Month</option>
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                        </select>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="data-row two-cols">
+                        <input type="date" id="fromDate" placeholder="From Date">
+                        <input type="date" id="toDate" placeholder="To Date">
+                    </div>
+                </div>
+
+
+                <!-- Step 4 -->
+                <div class="step">
+                    <h4>Step 4: Automation</h4>
+                    <button class="run-btn" id="runBtn2" onclick="startAutomation2()" disabled>
+                        ▶ Run Automation
+                    </button>
+                    <div class="stopbtns">
+                        <button class="stop-btn" id="stopBtn2" onclick="stopAutomation2()" disabled>
+                            ⛔ Stop Automation
+                        </button>
+                        <button class="shutoff" onclick="stopApp()"> ⏻ </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Logs -->
+            <div class="logs">
+                <h3>Automation Logs</h3>
+                <div class="log-box" id="logBox2">Waiting for logs...</div>
+            </div>
+
+            <p class="footer-copy">©️ Sumit Sinha - AuthoMate <span class="version">v0.0.3</span></p>
+
         </div>
-
-        <p class="footer-copy">©️ Sumit Sinha - AuthoMate <span class="version">v0.0.3</span></p>
-
     </div>
 </div>
 
@@ -580,336 +768,406 @@
      TAB SWITCH SCRIPT
      ========================= -->
 <script>
-    function openTab(tabId, el) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
-        el.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
-    let logInterval = null;
-    let currentRunId = null;
+        const loginWrapper = document.getElementById("loginWrapper");
+        const appWrapper   = document.getElementById("appWrapper");
 
-    const eventSource = new EventSource("/status/stream");
-
-    eventSource.onmessage = function (event) {
-        const state = event.data;
-
-        if (state === "STOPPED"){
-            stopAutomation();
-        }
-        if (state === "FAILED"){
-            stopAutomation();
-            setStatus("Error", "error");
-            setStatus2("Error", "error");
-        }
-    };
-
-    setStatus("Idle", "idle");
-    setStatus2("Idle", "idle");
-
-    function stopApp() {
-        fetch('/app/shutdown', {
-            method: 'POST'
-        }).then(() => {
-            window.open('', '_self');
-            window.close(); // close browser tab
-        });
-    }
-
-    function validateExcel() {
-        setStatus("Running", "running");
-        const fileInput = document.getElementById("excelFile");
-        const status = document.getElementById("status");
-
-        if (!fileInput.files.length) {
-            setStatus("Error", "error");
-            status.textContent = "⚠️ Upload Excel first";
+        if (!loginWrapper || !appWrapper) {
+            console.warn("Login/App wrapper not found in DOM yet");
             return;
         }
 
-        const formData = new FormData();
-        formData.append("file", fileInput.files[0]);
+        if (isLoggedIn === "true") {
+            loginWrapper.style.display = "none";
+            appWrapper.style.display = "block";
+        }
+        // else: do NOTHING → let default CSS show login page
+    });
 
-        status.textContent = "🔍 Validating Excel...";
+     function doLogin() {
+            const user  = document.getElementById('loginUser').value.trim();
+            const pass  = document.getElementById('loginPass').value.trim();
+            const error = document.getElementById('loginError');
 
-        fetch("/validate", { method: "POST", body: formData })
-            .then(res => res.json())
-            .then(report => {
+            if (user === 'admin' && pass === '00000') {
+                sessionStorage.setItem("isLoggedIn", "true");
+                sessionStorage.setItem("loggedInUser", user);
 
-              const logBox = document.getElementById("logBox");
+                document.getElementById('loginWrapper').style.display = 'none';
+                document.getElementById('appWrapper').style.display   = 'block';
 
-            if (report.valid) {
-                 excelValidated = true;
-                 document.getElementById("runBtn").disabled = false;
-                 status.textContent = "✅ Excel valid. Ready to run.";
-                logBox.innerHTML =
-                    "<div style='color:#22c55e; font-weight:600;'>✅ Excel validated successfully, you are good to go...</div>";
+                error.style.display = 'none';
             } else {
-                setStatus("Error", "error");
-
-                excelValidated = false;
-                 document.getElementById("runBtn").disabled = true;
-                 status.textContent = "❌ Invalid Excel File. Re-Upload";
-
-                let errorHtml = "<div style='color:#ef4444; font-weight:600;'>❌ Excel Validation failed</div><ul>";
-
-                if (report.fileErrors && report.fileErrors.length > 0) {
-                    report.fileErrors.forEach(err => {
-                        errorHtml += `<li style="color:#ef4444;">${err}</li>`;
-                    });
-                } else {
-                    errorHtml += "<li style='color:#ef4444;'>Invalid file format. Please upload a valid .xlsx file.</li>";
-                }
-
-                errorHtml += "</ul>";
-
-                logBox.innerHTML = errorHtml;
+                error.style.display = 'block';
             }
-
-            });
-    }
-
-
-
-    function startAutomation() {
-        setStatus("Running", "running");
-        const runBtn = document.getElementById("runBtn");
-        const stopBtn = document.getElementById("stopBtn");
-        const status = document.getElementById("status");
-
-        const userId = document.getElementById("userId").value;
-        const password = document.getElementById("password").value;
-        const fileInput = document.getElementById("excelFile");
-
-        if (!userId || !password) {
-            setStatus("Error", "error");
-            status.textContent = "⚠️ Please enter User ID and Password";
-            return;
         }
 
-        if (!fileInput.files.length) {
-            setStatus("Error", "error");
-            status.textContent = "⚠️ Please upload Excel file";
-            return;
+        function doLogout() {
+            sessionStorage.removeItem("isLoggedIn");
+            sessionStorage.removeItem("loggedInUser");
+
+            document.getElementById('loginWrapper').style.display = 'flex';
+            document.getElementById('appWrapper').style.display   = 'none';
+
+            document.getElementById('loginPass').value = "";
+            document.getElementById('loginError').style.display = 'none';
+
+             window.location.reload();
         }
 
-        const formData = new FormData();
-        formData.append("userId", userId);
-        formData.append("password", password);
-        formData.append("file", fileInput.files[0]);
+       function openTab(tabId, el) {
+           document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+           document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
-        runBtn.disabled = true;
-        stopBtn.disabled = false;
-        status.textContent = "📤 Uploading file & starting automation...";
+           el.classList.add('active');
+           document.getElementById(tabId).classList.add('active');
+       }
 
-        fetch("/start", {
-            method: "POST",
-            body: formData   // ❗ NO content-type header
-        })
-        .then(res => res.json())
-        .then(data => {
-            currentRunId = data.runId;
-            status.textContent = "🚀 Automation running...";
+       let logInterval = null;
+       let currentRunId = null;
 
-            if (logInterval) clearInterval(logInterval);
-            logInterval = setInterval(() => loadLogs(currentRunId), 2000);
-        })
-        .catch(err => {
-            console.error(err);
-            setStatus("Error", "error");
-            status.textContent = "❌ Failed to start automation";
-            runBtn.disabled = false;
-            stopBtn.disabled = true;
+       const eventSource = new EventSource("/status/stream");
+
+       eventSource.onmessage = function (event) {
+           const state = event.data;
+
+           if (state === "STOPPED"){
+               stopAutomation();
+           }
+           if (state === "FAILED"){
+               stopAutomation();
+               setStatus("Error", "error");
+               setStatus2("Error", "error");
+           }
+       };
+
+       setStatus("Idle", "idle");
+       setStatus2("Idle", "idle");
+
+       function stopApp() {
+           fetch('/app/shutdown', {
+               method: 'POST'
+           }).then(() => {
+               window.open('', '_self');
+               doLogout();
+               window.close(); // close browser tab
+           });
+       }
+
+       function validateExcel() {
+           setStatus("Running", "running");
+           const fileInput = document.getElementById("excelFile");
+           const status = document.getElementById("status");
+
+           if (!fileInput.files.length) {
+               setStatus("Error", "error");
+               status.textContent = "⚠️ Upload Excel first";
+               return;
+           }
+
+           const formData = new FormData();
+           formData.append("file", fileInput.files[0]);
+
+           status.textContent = "🔍 Validating Excel...";
+
+           fetch("/validate", { method: "POST", body: formData })
+               .then(res => res.json())
+               .then(report => {
+
+                 const logBox = document.getElementById("logBox");
+
+               if (report.valid) {
+                    excelValidated = true;
+                    document.getElementById("runBtn").disabled = false;
+                    status.textContent = "✅ Excel valid. Ready to run.";
+                   logBox.innerHTML =
+                       "<div style='color:#22c55e; font-weight:600;'>✅ Excel validated successfully, you are good to go...</div>";
+
+                    // 🔒 Lock + blur Excel upload section
+                    lockExcelSection("excelStep");
+               } else {
+                   setStatus("Error", "error");
+
+                   excelValidated = false;
+                    document.getElementById("runBtn").disabled = true;
+                    status.textContent = "❌ Invalid Excel File. Re-Upload";
+
+                   let errorHtml = "<div style='color:#ef4444; font-weight:600;'>❌ Excel Validation failed</div><ul>";
+
+                   if (report.fileErrors && report.fileErrors.length > 0) {
+                       report.fileErrors.forEach(err => {
+                           errorHtml += `<li style="color:#ef4444;">${err}</li>`;
+                       });
+                   } else {
+                       errorHtml += "<li style='color:#ef4444;'>Invalid file format. Please upload a valid .xlsx file.</li>";
+                   }
+
+                   errorHtml += "</ul>";
+
+                   logBox.innerHTML = errorHtml;
+               }
+
+               });
+       }
+
+
+
+       function startAutomation() {
+           setStatus("Running", "running");
+           const runBtn = document.getElementById("runBtn");
+           const stopBtn = document.getElementById("stopBtn");
+           const status = document.getElementById("status");
+
+           const userId = document.getElementById("userId").value;
+           const password = document.getElementById("password").value;
+           const fileInput = document.getElementById("excelFile");
+
+           if (!userId || !password) {
+               setStatus("Error", "error");
+               status.textContent = "⚠️ Please enter User ID and Password";
+               return;
+           }
+
+           if (!fileInput.files.length) {
+               setStatus("Error", "error");
+               status.textContent = "⚠️ Please upload Excel file";
+               return;
+           }
+
+           const formData = new FormData();
+           formData.append("userId", userId);
+           formData.append("password", password);
+           formData.append("file", fileInput.files[0]);
+
+           runBtn.disabled = true;
+           stopBtn.disabled = false;
+           status.textContent = "📤 Uploading file & starting automation...";
+
+           fetch("/start", {
+               method: "POST",
+               body: formData   // ❗ NO content-type header
+           })
+           .then(res => res.json())
+           .then(data => {
+               currentRunId = data.runId;
+               status.textContent = "🚀 Automation running...";
+
+               if (logInterval) clearInterval(logInterval);
+               logInterval = setInterval(() => loadLogs(currentRunId), 2000);
+           })
+           .catch(err => {
+               console.error(err);
+               setStatus("Error", "error");
+               status.textContent = "❌ Failed to start automation";
+               runBtn.disabled = false;
+               stopBtn.disabled = true;
+           });
+       }
+
+
+
+       function validateExcel2() {
+           setStatus2("Running", "running");
+           const fileInput = document.getElementById("excelFile2");
+           const status = document.getElementById("status2");
+
+           if (!fileInput.files.length) {
+               setStatus2("Error", "error");
+               status.textContent = "⚠️ Upload Excel first";
+               return;
+           }
+
+           const formData = new FormData();
+           formData.append("file", fileInput.files[0]);
+
+           status.textContent = "🔍 Validating Excel...";
+
+           fetch("/validate2", { method: "POST", body: formData })
+               .then(res => res.json())
+               .then(report => {
+
+                 const logBox = document.getElementById("logBox2");
+
+               if (report.valid) {
+                    excelValidated = true;
+                    document.getElementById("runBtn2").disabled = false;
+                    status.textContent = "✅ Excel valid. Ready to run.";
+                   logBox.innerHTML =
+                       "<div style='color:#22c55e; font-weight:600;'>✅ Excel validated successfully, you are good to go...</div>";
+
+                   // 🔒 Lock + blur Excel upload section
+                    lockExcelSection("excelStep2");
+               } else {
+                   setStatus2("Error", "error");
+
+                   excelValidated = false;
+                    document.getElementById("runBtn2").disabled = true;
+                    status.textContent = "❌ Invalid Excel File. Re-Upload";
+
+                   let errorHtml = "<div style='color:#ef4444; font-weight:600;'>❌ Excel Validation failed</div><ul>";
+
+                   if (report.fileErrors && report.fileErrors.length > 0) {
+                       report.fileErrors.forEach(err => {
+                           errorHtml += `<li style="color:#ef4444;">${err}</li>`;
+                       });
+                   } else {
+                       errorHtml += "<li style='color:#ef4444;'>Invalid file format. Please upload a valid .xlsx file.</li>";
+                   }
+
+                   errorHtml += "</ul>";
+
+                   logBox.innerHTML = errorHtml;
+               }
+
+               });
+       }
+
+       function startAutomation2() {
+           setStatus2("Running", "running");
+           const runBtn = document.getElementById("runBtn2");
+           const stopBtn = document.getElementById("stopBtn2");
+           const status = document.getElementById("status2");
+
+           const userId = document.getElementById("userId2").value;
+           const password = document.getElementById("password2").value;
+           const year = document.getElementById("year").value;
+           const month = document.getElementById("month").value;
+           const season = document.getElementById("season").value;
+           const fromDate = document.getElementById("fromDate").value;
+           const toDate = document.getElementById("toDate").value;
+           const fileInput = document.getElementById("excelFile2");
+
+           if (!userId || !password || !year || !month || !season || !fromDate || !toDate) {
+               setStatus2("Error", "error");
+               status.textContent = "⚠️ Please enter complete peers details";
+               return;
+           }
+
+           if (!fileInput.files.length) {
+               setStatus2("Error", "error");
+               status.textContent = "⚠️ Please upload Excel file";
+               return;
+           }
+
+           const formData = new FormData();
+           formData.append("userId", userId);
+           formData.append("password", password);
+           formData.append("year", year);
+           formData.append("month", month);
+           formData.append("season", season);
+           formData.append("fromDate", fromDate);
+           formData.append("toDate", toDate);
+           formData.append("file", fileInput.files[0]);
+
+           runBtn.disabled = true;
+           stopBtn.disabled = false;
+           status.textContent = "📤 Uploading file & starting automation...";
+
+           fetch("/start2", {
+               method: "POST",
+               body: formData
+           })
+           .then(res => res.json())
+           .then(data => {
+               currentRunId = data.runId;
+               status.textContent = "🚀 Automation running...";
+
+               if (logInterval) clearInterval(logInterval);
+               logInterval = setInterval(() => loadLogs2(currentRunId), 2000);
+           })
+           .catch(err => {
+               console.error(err);
+               setStatus2("Error", "error");
+               status.textContent = "❌ Failed to start automation";
+               runBtn.disabled = false;
+               stopBtn.disabled = true;
+           });
+       }
+
+       function setStatus(text, state) {
+           const status = document.getElementById("status");
+           status.textContent = text;
+           status.className = "status " + state;
+       }
+
+       function setStatus2(text, state) {
+           const status = document.getElementById("status2");
+           status.textContent = text;
+           status.className = "status " + state;
+       }
+
+       function stopAutomation() {
+           setStatus("Stopped", "stopped");
+           const runBtn = document.getElementById("runBtn");
+           const stopBtn = document.getElementById("stopBtn");
+           const status = document.getElementById("status");
+
+           stopBtn.disabled = true;
+           runBtn.disabled = false;
+           status.textContent = "Stopping automation...";
+
+           fetch('/stop', { method: 'POST' })
+               .then(() => {
+                   status.textContent = "Automation stopped";
+               });
+       }
+
+       function stopAutomation2() {
+           setStatus2("Stopped", "stopped");
+           const runBtn = document.getElementById("runBtn2");
+           const stopBtn = document.getElementById("stopBtn2");
+           const status = document.getElementById("status2");
+
+           stopBtn.disabled = true;
+           runBtn.disabled = false;
+           status.textContent = "Stopping automation...";
+
+           fetch('/stop', { method: 'POST' })
+               .then(() => {
+                   status.textContent = "Automation stopped";
+               });
+       }
+
+       function loadLogs() {
+           fetch('/logs')
+               .then(res => res.text())
+               .then(data => {
+                   const logBox = document.getElementById("logBox")
+                   logBox.textContent = data.replace(/","/g, '\n');
+                   logBox.scrollTop = logBox.scrollHeight;
+               })
+               .catch(() => {
+                   clearInterval(logInterval);
+               });
+       }
+
+       function loadLogs2() {
+           fetch('/logs')
+               .then(res => res.text())
+               .then(data => {
+                   const logBox = document.getElementById("logBox2")
+                   logBox.textContent = data.replace(/","/g, '\n');
+                   logBox.scrollTop = logBox.scrollHeight;
+               })
+               .catch(() => {
+                   clearInterval(logInterval);
+               });
+       }
+
+    function lockExcelSection(stepId) {
+        const step = document.getElementById(stepId);
+
+        if (!step) return;
+
+        step.classList.add("step-locked");
+
+        // disable all inputs & buttons inside this step
+        step.querySelectorAll("input, button").forEach(el => {
+            el.disabled = true;
         });
-    }
-
-
-
-    function validateExcel2() {
-        setStatus2("Running", "running");
-        const fileInput = document.getElementById("excelFile2");
-        const status = document.getElementById("status2");
-
-        if (!fileInput.files.length) {
-            setStatus2("Error", "error");
-            status.textContent = "⚠️ Upload Excel first";
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("file", fileInput.files[0]);
-
-        status.textContent = "🔍 Validating Excel...";
-
-        fetch("/validate2", { method: "POST", body: formData })
-            .then(res => res.json())
-            .then(report => {
-
-              const logBox = document.getElementById("logBox2");
-
-            if (report.valid) {
-                 excelValidated = true;
-                 document.getElementById("runBtn2").disabled = false;
-                 status.textContent = "✅ Excel valid. Ready to run.";
-                logBox.innerHTML =
-                    "<div style='color:#22c55e; font-weight:600;'>✅ Excel validated successfully, you are good to go...</div>";
-            } else {
-                setStatus2("Error", "error");
-
-                excelValidated = false;
-                 document.getElementById("runBtn2").disabled = true;
-                 status.textContent = "❌ Invalid Excel File. Re-Upload";
-
-                let errorHtml = "<div style='color:#ef4444; font-weight:600;'>❌ Excel Validation failed</div><ul>";
-
-                if (report.fileErrors && report.fileErrors.length > 0) {
-                    report.fileErrors.forEach(err => {
-                        errorHtml += `<li style="color:#ef4444;">${err}</li>`;
-                    });
-                } else {
-                    errorHtml += "<li style='color:#ef4444;'>Invalid file format. Please upload a valid .xlsx file.</li>";
-                }
-
-                errorHtml += "</ul>";
-
-                logBox.innerHTML = errorHtml;
-            }
-
-            });
-    }
-
-    function startAutomation2() {
-        setStatus2("Running", "running");
-        const runBtn = document.getElementById("runBtn2");
-        const stopBtn = document.getElementById("stopBtn2");
-        const status = document.getElementById("status2");
-
-        const userId = document.getElementById("userId2").value;
-        const password = document.getElementById("password2").value;
-        const year = document.getElementById("year").value;
-        const month = document.getElementById("month").value;
-        const season = document.getElementById("season").value;
-        const fromDate = document.getElementById("fromDate").value;
-        const toDate = document.getElementById("toDate").value;
-        const fileInput = document.getElementById("excelFile2");
-
-        if (!userId || !password || !year || !month || !season || !fromDate || !toDate) {
-            setStatus2("Error", "error");
-            status.textContent = "⚠️ Please enter complete peers details";
-            return;
-        }
-
-        if (!fileInput.files.length) {
-            setStatus2("Error", "error");
-            status.textContent = "⚠️ Please upload Excel file";
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("userId", userId);
-        formData.append("password", password);
-        formData.append("year", year);
-        formData.append("month", month);
-        formData.append("season", season);
-        formData.append("fromDate", fromDate);
-        formData.append("toDate", toDate);
-        formData.append("file", fileInput.files[0]);
-
-        runBtn.disabled = true;
-        stopBtn.disabled = false;
-        status.textContent = "📤 Uploading file & starting automation...";
-
-        fetch("/start2", {
-            method: "POST",
-            body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
-            currentRunId = data.runId;
-            status.textContent = "🚀 Automation running...";
-
-            if (logInterval) clearInterval(logInterval);
-            logInterval = setInterval(() => loadLogs2(currentRunId), 2000);
-        })
-        .catch(err => {
-            console.error(err);
-            setStatus2("Error", "error");
-            status.textContent = "❌ Failed to start automation";
-            runBtn.disabled = false;
-            stopBtn.disabled = true;
-        });
-    }
-
-    function setStatus(text, state) {
-        const status = document.getElementById("status");
-        status.textContent = text;
-        status.className = "status " + state;
-    }
-
-    function setStatus2(text, state) {
-        const status = document.getElementById("status2");
-        status.textContent = text;
-        status.className = "status " + state;
-    }
-
-    function stopAutomation() {
-        setStatus("Stopped", "stopped");
-        const runBtn = document.getElementById("runBtn");
-        const stopBtn = document.getElementById("stopBtn");
-        const status = document.getElementById("status");
-
-        stopBtn.disabled = true;
-        runBtn.disabled = false;
-        status.textContent = "Stopping automation...";
-
-        fetch('/stop', { method: 'POST' })
-            .then(() => {
-                status.textContent = "Automation stopped";
-            });
-    }
-
-    function stopAutomation2() {
-        setStatus2("Stopped", "stopped");
-        const runBtn = document.getElementById("runBtn2");
-        const stopBtn = document.getElementById("stopBtn2");
-        const status = document.getElementById("status2");
-
-        stopBtn.disabled = true;
-        runBtn.disabled = false;
-        status.textContent = "Stopping automation...";
-
-        fetch('/stop', { method: 'POST' })
-            .then(() => {
-                status.textContent = "Automation stopped";
-            });
-    }
-
-    function loadLogs() {
-        fetch('/logs')
-            .then(res => res.text())
-            .then(data => {
-                const logBox = document.getElementById("logBox")
-                logBox.textContent = data.replace(/","/g, '\n');
-                logBox.scrollTop = logBox.scrollHeight;
-            })
-            .catch(() => {
-                clearInterval(logInterval);
-            });
-    }
-
-    function loadLogs2() {
-        fetch('/logs')
-            .then(res => res.text())
-            .then(data => {
-                const logBox = document.getElementById("logBox2")
-                logBox.textContent = data.replace(/","/g, '\n');
-                logBox.scrollTop = logBox.scrollHeight;
-            })
-            .catch(() => {
-                clearInterval(logInterval);
-            });
     }
 </script>
 
